@@ -5,7 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slideshow</title>
 </head>
+<style>
+
+    .container{
+        width: fit-content;
+        margin: 50px auto;
+        position: relative;
+    }
+    .slide{
+        height: 280px;
+        width: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .ico-action{
+        height: 50px;
+        position: absolute;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    .ico-prev{
+        left: 0;
+        top: 40%;
+    }
+
+    .ico-prev:hover{
+        transform: scale(0.8);
+    }
+
+    .ico-next{
+        right: 0;
+        top: 40%;
+    }
+
+    .ico-next:hover{
+        transform: scale(0.8);
+    }
+</style>
 <body>
+    <div class="container">
+        <img src="parrot.jpg" class="slide" id="slide"/>
+        <img src="previous.png"  class= "ico-action ico-prev" onclick="prev()"/>
+        <img src="next.png"  class=" ico-action ico-next" onclick="next()"/>
+
+    </div>
+    <script>
+        const images = [ "parrot.jpg", "backyard.jpg", "duck.jpg", "eagle.jpg", "peacock.jpg"];
+
+        let index = 0;
+        const slide = document.getElementById('slide');
+
+        function next(){
+           if(index < images.length -1){
+            index++;
+           }
+           else{
+            index = 0;
+           }
+
+           slide.src = images[index]
+
+        }
+
+        function prev(){
+           if(index > 0){
+            index--;
+           }
+           else{
+            index = images.length -1;
+           }
+
+           slide.src = images[index]
+
+        }
+
+        setInterval(next, 2000);
+    </script>
     
 </body>
 </html>
